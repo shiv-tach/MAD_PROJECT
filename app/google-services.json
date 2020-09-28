@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "338820973580",
+    "firebase_url": "https://skyridernewdb.firebaseio.com",
+    "project_id": "skyridernewdb",
+    "storage_bucket": "skyridernewdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338820973580:android:a45f5aa33d7532570ada29",
+        "android_client_info": {
+          "package_name": "com.example.solo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338820973580-j050co4qlbttkumbbbsi6qgtngmbjc6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.solo",
+            "certificate_hash": "3053a993d11db4d042a7ae8020019d0ebd21df64"
+          }
+        },
+        {
+          "client_id": "338820973580-i8bogv244mh4gp1u8ep45cop5ctife34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdXTmuTeJT4Bim_k09SriHZOhy4ezLuxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338820973580-i8bogv244mh4gp1u8ep45cop5ctife34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

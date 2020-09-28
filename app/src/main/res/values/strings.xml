@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SkyRider</string>
+    <string name="playButton">Play</string>
+    <string name="highScore">High Score</string>
+    <string name="StartGame">Login</string>
+    <string name="textUser">Login Here</string>
+    <string name="userId" />
+    <string name="userPassword" />
+    <string name="Register">SIgnUp</string>
+    <string name="userNameR">User Name</string>
+    <string name="EnterInput" />
+    <string name="FullName">Full Name</string>
+    <string name="FullNAme" />
+    <string name="Password">Password </string>
+    <string name="passwordInput" />>
+</resources>
