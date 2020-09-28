@@ -33,6 +33,9 @@ public class Register extends AppCompatActivity {
         btn = findViewById(R.id.button6);
 
 
+
+
+
         std = new Users();
 
 
@@ -42,17 +45,26 @@ public class Register extends AppCompatActivity {
 
                 dbRef = FirebaseDatabase.getInstance().getReference().child("User");
 
+                String uname = name.getText().toString();
+                String fullName = fme.getText().toString();
+                String nPassword = password.getText().toString();
+
                 try{
-                    if(TextUtils.isEmpty(name.getText().toString())){
-                        Toast.makeText(getApplicationContext(),"Name is Empty",Toast.LENGTH_SHORT).show();
-                    }
-                    else if(TextUtils.isEmpty(fme.getText().toString())){
+                    if(uname.isEmpty()){
 
-                        Toast.makeText(getApplicationContext(),"Full Name is Empty",Toast.LENGTH_SHORT).show();
+                        name.setError("Enter User Name");
+                        name.requestFocus();
                     }
-                    else if(TextUtils.isEmpty(password.getText().toString())){
+                    else if(fullName.isEmpty()){
 
-                        Toast.makeText(getApplicationContext(),"Password is Empty",Toast.LENGTH_SHORT).show();
+                        fme.setError("Enter Full Name");
+                        fme.requestFocus();
+
+                    }
+                    else if(nPassword.isEmpty()){
+
+                        password.setError("Enter password");
+                        password.requestFocus();
 
                     }
                     else{
@@ -60,7 +72,7 @@ public class Register extends AppCompatActivity {
                         std.setName(name.getText().toString().trim());
                         std.setFullName(fme.getText().toString().trim());
                         std.setPassword(password.getText().toString().trim());
-                        dbRef.child("std2").setValue(std);
+                        dbRef.push().setValue(std);
                         Toast.makeText(getApplicationContext(),"Successfully Registered",Toast.LENGTH_SHORT).show();
                         clearControls();
                         Intent intent =new Intent(getApplicationContext(),User.class);

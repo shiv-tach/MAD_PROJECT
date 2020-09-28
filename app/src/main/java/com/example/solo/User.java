@@ -30,9 +30,10 @@ public class User extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         Button button,button2;
-        final EditText text1;
+        final EditText text1, txt2;
 
         text1 = findViewById(R.id.UID);
+        txt2 = findViewById(R.id.PSD);
         button = findViewById(R.id.btn1);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,9 @@ public class User extends AppCompatActivity {
 
                 final String name ;
                 name = text1.getText().toString();
+
+                String Upassword =txt2.getText().toString();
+                String userName = text1.getText().toString();
 
 
                 dbRef = FirebaseDatabase.getInstance().getReference().child("User/std2");
@@ -59,7 +63,21 @@ public class User extends AppCompatActivity {
                     }
                 });
 
-                if(name.equals(names)){
+                if(userName.isEmpty()){
+
+                    text1.setError("Insert User Name");
+                    text1.requestFocus();
+
+                }
+                else if(Upassword.isEmpty()){
+
+                    txt2.setError("Enter Password");
+                    txt2.requestFocus();
+                }
+
+
+
+                else if(name.equals(names)){
 
 
 
