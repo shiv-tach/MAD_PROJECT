@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ThrowOnExtraProperties;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -24,12 +25,7 @@ import org.w3c.dom.Text;
 public class User extends AppCompatActivity {
 
     DatabaseReference dbRef;
-    EditText fme;
     String names;
-    int countValue= Register.counts;
-
-
-
 
 
     @Override
@@ -44,8 +40,6 @@ public class User extends AppCompatActivity {
         txt2 = findViewById(R.id.PSD);
         button = findViewById(R.id.btn1);
 
-        Toast.makeText(getApplicationContext(),""+countValue,Toast.LENGTH_SHORT).show();
-
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,14 +51,14 @@ public class User extends AppCompatActivity {
                 String Upassword = txt2.getText().toString();
                 String userName = text1.getText().toString();
 
-                for (int i = 113; i <= countValue; i++) {
 
-                    dbRef = FirebaseDatabase.getInstance().getReference().child("User/id"+i);
-                    dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                     dbRef = FirebaseDatabase.getInstance().getReference().child("User/"+userName);
+                     dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             names = dataSnapshot.child("name").getValue().toString();
+                            Toast.makeText(getApplicationContext(),"this is from"+names,Toast.LENGTH_SHORT).show();
 
 
                         }
@@ -90,17 +84,15 @@ public class User extends AppCompatActivity {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
 
-                        //Toast.makeText(getApplicationContext(), "Simple Button 2", Toast.LENGTH_LONG).show();
-
                     } else {
 
 
-                       Toast.makeText(getApplicationContext(), "else part of loop"+i + names, Toast.LENGTH_SHORT).show();
+                       Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                     }
 
                 }
 
-            }
+
         });
 
 
@@ -122,4 +114,7 @@ public class User extends AppCompatActivity {
 
 
     }
+
+
+
 }

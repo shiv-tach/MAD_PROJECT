@@ -7,9 +7,9 @@
     <string name="userId" />
     <string name="userPassword" />
     <string name="Register">SIgnUp</string>
-    <string name="userNameR">User Name</string>
+    <string name="userNameR">Mobile Number</string>
     <string name="EnterInput" />
-    <string name="FullName">Full Name</string>
+    <string name="FullName">User Name</string>
     <string name="FullNAme" />
     <string name="Password">Password </string>
     <string name="passwordInput" />
