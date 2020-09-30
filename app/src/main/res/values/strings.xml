@@ -12,5 +12,8 @@
     <string name="FullName">Full Name</string>
     <string name="FullNAme" />
     <string name="Password">Password </string>
-    <string name="passwordInput" />>
+    <string name="passwordInput" />
+    <string name="ShowDetails">Get_Details</string>
+    <string name="Profile_text">Profile</string>
+    <string name="button">Button</string>>
 </resources>

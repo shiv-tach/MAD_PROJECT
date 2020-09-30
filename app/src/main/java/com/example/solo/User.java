@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +26,12 @@ public class User extends AppCompatActivity {
     DatabaseReference dbRef;
     EditText fme;
     String names;
+    int countValue= Register.counts;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,66 +44,66 @@ public class User extends AppCompatActivity {
         txt2 = findViewById(R.id.PSD);
         button = findViewById(R.id.btn1);
 
+        Toast.makeText(getApplicationContext(),""+countValue,Toast.LENGTH_SHORT).show();
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final String name ;
+                final String name;
                 name = text1.getText().toString();
 
-                String Upassword =txt2.getText().toString();
+                String Upassword = txt2.getText().toString();
                 String userName = text1.getText().toString();
 
+                for (int i = 113; i <= countValue; i++) {
 
-                dbRef = FirebaseDatabase.getInstance().getReference().child("User/std2");
-                dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    dbRef = FirebaseDatabase.getInstance().getReference().child("User/id"+i);
+                    dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        names = dataSnapshot.child("name").getValue().toString();
+                            names = dataSnapshot.child("name").getValue().toString();
 
 
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    if (userName.isEmpty()) {
+
+                        text1.setError("Insert User Name");
+                        text1.requestFocus();
+
+                    } else if (Upassword.isEmpty()) {
+
+                        txt2.setError("Enter Password");
+                        txt2.requestFocus();
+                    } else if (name.equals(names)) {
+
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+
+                        //Toast.makeText(getApplicationContext(), "Simple Button 2", Toast.LENGTH_LONG).show();
+
+                    } else {
+
+
+                       Toast.makeText(getApplicationContext(), "else part of loop"+i + names, Toast.LENGTH_SHORT).show();
                     }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-                if(userName.isEmpty()){
-
-                    text1.setError("Insert User Name");
-                    text1.requestFocus();
-
                 }
-                else if(Upassword.isEmpty()){
-
-                    txt2.setError("Enter Password");
-                    txt2.requestFocus();
-                }
-
-
-
-                else if(name.equals(names)){
-
-
-
-                    Intent intent =new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(intent);
-
-                    Toast.makeText(getApplicationContext(), "Simple Button 2"+name, Toast.LENGTH_LONG).show();
-
-                }else{
-
-
-                    Toast.makeText(getApplicationContext(),""+names,Toast.LENGTH_SHORT).show();
-                }
-
-
 
             }
         });
+
+
 
         button2 = findViewById(R.id.btn2);
 
