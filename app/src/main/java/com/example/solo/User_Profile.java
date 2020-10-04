@@ -100,6 +100,12 @@ public class User_Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                dataRef = FirebaseDatabase.getInstance().getReference().child("User/"+upname);
+                dataRef.removeValue();
+                Intent intent = new Intent(getApplicationContext(),User.class);
+                startActivity(intent);
+
                 
 
             }

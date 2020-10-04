@@ -36,9 +36,9 @@ public class UpdateData extends AppCompatActivity {
 
         text1 = findViewById(R.id.textView2);
         text2 = findViewById(R.id.textView3);
-        edit2 = findViewById(R.id.edittext2);
+        edit2 = findViewById(R.id.edittext2);//new name
         btn1 = findViewById(R.id.button2);
-        btn2 = findViewById(R.id.button4);
+        btn2 = findViewById(R.id.button4);//update name
         Intent intent = getIntent();
 
         final String username = intent.getStringExtra("user");
@@ -83,13 +83,25 @@ public class UpdateData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                dataRef = FirebaseDatabase.getInstance().getReference().child("User/"+username);
-
-                dataRef.child("fullName").setValue(edit2.getText().toString());
-
-                text1.setText(edit2.getText().toString());
 
 
+                String nName = edit2.getText().toString();
+
+                if( nName.isEmpty()){
+
+                    edit2.setError("Enter New User Name");
+                    edit2.requestFocus();
+                }
+                else {
+
+                    dataRef = FirebaseDatabase.getInstance().getReference().child("User/" + username);
+
+                    dataRef.child("fullName").setValue(edit2.getText().toString());
+
+                    text1.setText(edit2.getText().toString());
+
+
+                }
 
             }
         });
@@ -98,10 +110,10 @@ public class UpdateData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(),"Working",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"User Name Updated",Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getApplicationContext(),User_Profile.class);
-                intent.putExtra("user",username);
+                intent.putExtra("userName",username);
                 startActivity(intent);
 
 
