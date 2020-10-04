@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,33 +17,37 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class User_Profile extends AppCompatActivity {
+public class UpdateData extends AppCompatActivity {
 
-    TextView text1,text2,text3;
-    Button btn,btn2,btn3,btn4,btn5;
+
     DatabaseReference dataRef;
-    Users person;
-    String upname;
+    TextView text1,text2;
+    EditText edit1,edit2;
+    Button btn2,btn1;
+
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__profile);
+        setContentView(R.layout.activity_update_data);
 
-        text1 = findViewById(R.id.rr1);
-        text2 = findViewById(R.id.rr2);
-        btn2 = findViewById(R.id.btn4);
-        btn3 = findViewById(R.id.btnplay);
-        btn4 = findViewById(R.id.btndelete);
-        btn5 = findViewById(R.id.btnup);
-
-        person = new Users();
-
+        text1 = findViewById(R.id.textView2);
+        text2 = findViewById(R.id.textView3);
+        edit2 = findViewById(R.id.edittext2);
+        btn1 = findViewById(R.id.button2);
+        btn2 = findViewById(R.id.button4);
         Intent intent = getIntent();
-        String username = intent.getStringExtra("userName");
 
-        upname = username;
+        final String username = intent.getStringExtra("user");
+
+
+        Toast.makeText(getApplicationContext(),""+username,Toast.LENGTH_SHORT).show();
+
+
+
 
         dataRef = FirebaseDatabase.getInstance().getReference().child("User/"+username);
         dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -78,40 +83,27 @@ public class User_Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent =new Intent(getApplicationContext(),User.class);
-                startActivity(intent);
+                dataRef = FirebaseDatabase.getInstance().getReference().child("User/"+username);
+
+                dataRef.child("fullName").setValue(edit2.getText().toString());
+
+                text1.setText(edit2.getText().toString());
 
 
-            }
-        });
-
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent =new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
 
             }
         });
 
-        btn4.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                
+                Toast.makeText(getApplicationContext(),"Working",Toast.LENGTH_SHORT).show();
 
-            }
-        });
-
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), UpdateData.class);
-                intent.putExtra("user",upname);
+                Intent intent = new Intent(getApplicationContext(),User_Profile.class);
+                intent.putExtra("user",username);
                 startActivity(intent);
+
 
 
             }

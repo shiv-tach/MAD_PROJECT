@@ -49,7 +49,7 @@ public class User extends AppCompatActivity {
 
 
                 name = text1.getText().toString();
-                String Upassword = txt2.getText().toString();
+                final String Upassword = txt2.getText().toString();
                 final String userName = text1.getText().toString();
 
                 if (userName.isEmpty()) {
@@ -78,6 +78,21 @@ public class User extends AppCompatActivity {
                                     pas = dataSnapshot.child("password").getValue().toString();
 
 
+                                    if (name.equals(names) && Upassword.equals(pas)) {
+
+
+                                        Intent intent = new Intent(getApplicationContext(), User_Profile.class);
+                                        intent.putExtra("userName", name);
+                                        startActivity(intent);
+
+                                    } else {
+
+
+                                        Toast.makeText(getApplicationContext(), "Password Wrong", Toast.LENGTH_SHORT).show();
+
+                                    }
+
+
                                 }
                                 else{
 
@@ -91,19 +106,7 @@ public class User extends AppCompatActivity {
                         }
                     });
 
-                    if (name.equals(names) && Upassword.equals(pas)) {
 
-
-                        Intent intent = new Intent(getApplicationContext(), User_Profile.class);
-                        intent.putExtra("userName", name);
-                        startActivity(intent);
-
-                    } else {
-
-
-                        Toast.makeText(getApplicationContext(), "Please Wait", Toast.LENGTH_SHORT).show();
-
-                    }
 
                 }
             }

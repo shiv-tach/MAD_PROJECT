@@ -19,5 +19,10 @@
     <string name="getDetails">My Data</string>
     <string name="acount">Account</string>
     <string name="game">Play</string>
-    <string name="delete">Deactivate</string>>
+    <string name="delete">Deactivate</string>
+    <string name="upuser">Update</string>
+    <string name="upmoob">Update_Mobile</string>
+    <string name="changName">Update Name</string>
+    <string name="userup">User Update</string>
+    <string name="back">Profile</string>>
 </resources>
