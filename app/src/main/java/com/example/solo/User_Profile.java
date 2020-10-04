@@ -18,8 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class User_Profile extends AppCompatActivity {
 
-    TextView text1,text2;
-    Button btn,btn2;
+    TextView text1,text2,text3;
+    Button btn,btn2,btn3,btn4;
     DatabaseReference dataRef;
     Users person;
 
@@ -35,6 +35,8 @@ public class User_Profile extends AppCompatActivity {
         text2 = findViewById(R.id.rr2);
         btn = findViewById(R.id.button2);
         btn2 = findViewById(R.id.btn4);
+        btn3 = findViewById(R.id.btnplay);
+        btn4 = findViewById(R.id.btndelete);
 
         person = new Users();
 
@@ -42,7 +44,12 @@ public class User_Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                dataRef = FirebaseDatabase.getInstance().getReference().child("User/162");
+                Intent intent = getIntent();
+
+                String username = intent.getStringExtra("userName");
+
+
+                dataRef = FirebaseDatabase.getInstance().getReference().child("User/"+username);
                 dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -85,6 +92,26 @@ public class User_Profile extends AppCompatActivity {
                 Intent intent =new Intent(getApplicationContext(),User.class);
                 startActivity(intent);
 
+
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent =new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                
 
             }
         });

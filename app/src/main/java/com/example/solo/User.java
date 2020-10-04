@@ -25,7 +25,7 @@ import org.w3c.dom.Text;
 public class User extends AppCompatActivity {
 
     DatabaseReference dbRef;
-    String names;
+    String names,pas;
 
 
     @Override
@@ -46,52 +46,67 @@ public class User extends AppCompatActivity {
             public void onClick(View v) {
 
                 final String name;
+
+
                 name = text1.getText().toString();
-
                 String Upassword = txt2.getText().toString();
-                String userName = text1.getText().toString();
+                final String userName = text1.getText().toString();
+
+                if (userName.isEmpty()) {
+
+                    text1.setError("Insert User Name");
+                    text1.requestFocus();
+
+                } else if (Upassword.isEmpty()) {
+
+                    txt2.setError("Enter Password");
+                    txt2.requestFocus();
+                } else {
 
 
-                     dbRef = FirebaseDatabase.getInstance().getReference().child("User/"+userName);
-                     dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            names = dataSnapshot.child("name").getValue().toString();
-                            Toast.makeText(getApplicationContext(),"this is from"+names,Toast.LENGTH_SHORT).show();
+                    dbRef = FirebaseDatabase.getInstance().getReference().child("User/" + userName);
+                    dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                        }
+                                if(dataSnapshot.getValue() != null){
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    names = dataSnapshot.child("name").getValue().toString();
 
+
+                                    pas = dataSnapshot.child("password").getValue().toString();
+
+
+                                }
+                                else{
+
+                                    Toast.makeText(getApplicationContext(),"You have to Register",Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
                         }
                     });
 
-                    if (userName.isEmpty()) {
-
-                        text1.setError("Insert User Name");
-                        text1.requestFocus();
-
-                    } else if (Upassword.isEmpty()) {
-
-                        txt2.setError("Enter Password");
-                        txt2.requestFocus();
-                    } else if (name.equals(names)) {
+                    if (name.equals(names) && Upassword.equals(pas)) {
 
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), User_Profile.class);
+                        intent.putExtra("userName", name);
                         startActivity(intent);
 
                     } else {
 
 
-                       Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Please Wait", Toast.LENGTH_SHORT).show();
+
                     }
 
                 }
-
+            }
 
         });
 
@@ -110,6 +125,8 @@ public class User extends AppCompatActivity {
 
             }
         });
+
+
 
 
 

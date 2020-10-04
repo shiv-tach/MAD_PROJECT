@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".Register"
+    android:background="@drawable/back4"
+    >
+
+
 
     <EditText
         android:id="@+id/userInput"
@@ -23,10 +27,12 @@
         android:id="@+id/PassID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="48dp"
         android:text="@string/Password"
+        android:textColor="#050404"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintHorizontal_bias="0.196"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fname" />
 
@@ -36,6 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="@string/FullName"
+        android:textColor="#050404"
+        android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,12 +80,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/userNameR"
+        android:textColor="#050404"
+        android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/userInput"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintVertical_bias="0.88" />
 
     <Button
         android:id="@+id/button6"

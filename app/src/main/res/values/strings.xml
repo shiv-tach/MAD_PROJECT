@@ -13,7 +13,11 @@
     <string name="FullNAme" />
     <string name="Password">Password </string>
     <string name="passwordInput" />
-    <string name="ShowDetails">Get_Details</string>
+    <string name="ShowDetails">Log Out</string>
     <string name="Profile_text">Profile</string>
-    <string name="button">Button</string>>
+    <string name="button">Button</string>
+    <string name="getDetails">My Data</string>
+    <string name="acount">Account</string>
+    <string name="game">Play</string>
+    <string name="delete">Deactivate</string>>
 </resources>
